@@ -26,6 +26,8 @@ app = Flask(__name__)
 @app.route('/bagels', methods = ['GET','POST'])
 #protect this route with a required login
 def showAllBagels():
+    DBSession = sessionmaker(bind=engine)
+    session = DBSession()
     if request.method == 'GET':
         bagels = session.query(Bagel).all()
         return jsonify(bagels = [bagel.serialize for bagel in bagels])
