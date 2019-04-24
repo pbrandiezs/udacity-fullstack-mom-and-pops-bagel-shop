@@ -50,7 +50,7 @@ def new_user():
 
 
 @app.route('/bagels', methods = ['GET','POST'])
-#protect this route with a required login
+@auth.login_required
 def showAllBagels():
     DBSession = sessionmaker(bind=engine)
     session = DBSession()
